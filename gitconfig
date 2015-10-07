@@ -1,0 +1,56 @@
+[user]
+    name = Mario Đurašin
+    email = indiche@gmail.com
+
+[github]
+    user = indiche
+
+[core]
+    editor = vim
+    excludesfile = "~/.gitignore"
+    autocrlf = input
+
+[alias]
+    l = "!source ~/.githelpers; pretty_git_log"
+    dm = "!git branch --merged | grep -v '*' | xargs git branch -d"
+
+[push]
+    default = current
+
+[pull]
+    rebase = true
+
+[fetch]
+    prune = true
+
+[branch]
+    autosetuprebase = always
+
+[color]
+    ui = auto
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[diff]
+    tool = Kaleidoscope
+
+[difftool]
+    prompt = false
+
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+
+[mergetool]
+    prompt = false
+    keepBackup = false
+
+[merge]
+    tool = Kaleidoscope
+
+[credential]
+    helper = osxkeychain
+
+[commit]
+    template = "~/.gitmessage"

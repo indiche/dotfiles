@@ -1,0 +1,22 @@
+#!/bin/bash
+
+HASH="%C(yellow)%h%C(reset)"
+TIME="%C(green)(%ar)%C(reset)"
+AUTHOR="%C(blue)%an%C(reset)"
+REFS="%C(red)%d%C(reset)"
+SUBJECT="%s"
+
+FORMAT="$HASH $TIME $AUTHOR $REFS $SUBJECT"
+
+pretty_git_log() {
+    git log --graph --pretty="tformat:${FORMAT}" $* |
+    sed -Ee 's/(^[^<]*) ago\)/\1)/' |
+    sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
+    less -FXRS
+}
+
+delete_merged_branches() {
+    git branch --merged | 
+    grep -v "\*" | 
+    xargs git branch -d
+}
